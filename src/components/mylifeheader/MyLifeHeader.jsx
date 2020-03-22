@@ -2,14 +2,10 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 // import material components
-// import Link from '@material-ui/core/Link';
+import Link from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-// import Grid from '@material-ui/core/Grid';
-// import Container from '@material-ui/core/Container';
-// import Box from '@material-ui/core/Box';
 
 // import material styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,6 +24,7 @@ const logos = [
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: '#fff',
   },
   logo: {
     flexGrow: 1,
@@ -39,7 +36,7 @@ const MyLifeHeader = () => {
 
   return (
     <AppBar position="static">
-      <Toolbar classes={classes}>
+      <Toolbar className={classes.root}>
         {logos.map((logo) => {
           const keyGen = uuidv4();
 
@@ -49,7 +46,10 @@ const MyLifeHeader = () => {
             </div>
           );
         })}
-        <Button color="inherit">Login</Button>
+        {/* TODO: Text and URL should come from system */}
+        <Typography variant="body2" color="textSecondary" align="center">
+          <Link color="inherit" href="https://www.mylife.com/site/user-profile.view/">Go Back To Free Profile</Link>
+        </Typography>
       </Toolbar>
     </AppBar>
   );
