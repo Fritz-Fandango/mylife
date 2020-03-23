@@ -13,7 +13,7 @@ function App() {
     <>
       <CssBaseline />
       <MyLifeHeader />
-      {/* <MyLifeBody /> */}
+      <MyLifeBody />
       <MyLifeFooter />
     </>
   );
