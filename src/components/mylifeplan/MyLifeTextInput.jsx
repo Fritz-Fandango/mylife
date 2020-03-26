@@ -1,14 +1,17 @@
 import React from 'react';
 import classnames from 'classnames';
 
+import TextField from '@material-ui/core/TextField';
+import { Typography } from '@material-ui/core';
+
 const InputFeedback = ({ error }) => (error ? <div className="input-feedback">{error}</div> : null);
 
 const MyLifeLabel = ({
   error, className, children, ...props
 }) => (
-  <label className="label" {...props}>
+  <Typography style={{fontSize: 14, color: '#333', marginTop: 20}}>
     {children}
-  </label>
+  </Typography>
 );
 
 const MyLifeTextInput = ({
@@ -26,9 +29,9 @@ const MyLifeTextInput = ({
       <MyLifeLabel htmlFor={id} error={error}>
         {label}
       </MyLifeLabel>
-      <input
+      <TextField
+        variant="outlined"
         id={id}
-        className="text-input"
         type={type}
         value={value}
         onChange={onChange}
