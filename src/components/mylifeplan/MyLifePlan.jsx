@@ -1,80 +1,85 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
-import { makeStyles } from '@material-ui/core/styles';
-import CheckIcon from '@material-ui/icons/Check';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from '@material-ui/core/Paper';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
+import CheckIcon from "@mui/icons-material/Check";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import { makeStyles } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 // import components
-import { Box } from '@material-ui/core';
-import MyLifeTextInput from './MyLifeTextInput';
-import MyLifeFormEnhancer from './MyLifeFormEnhancer';
+import { Box } from "@mui/material";
+import MyLifeFormEnhancer from "./MyLifeFormEnhancer";
+import MyLifeTextInput from "./MyLifeTextInput";
 
-const planDescriptions = [{
-  heading: 'NEW – Lock Sections of Your Reputation Profile - ',
-  description: 'The same way you can lock your credit report.',
-},
-{
-  heading: 'Correct, Enhance & Monitor Reputation Profile and Reputation Score - ',
-  description: 'It could affect your career, who\'ll date you, where you live, & more.',
-},
-{
-  heading: 'Manage & Protect your Personal Information - ',
-  description: 'See websites that sell your personal information that you can\'t control. We can help you remove records from these sites with just one click',
-},
-{
-  heading: 'Receive Alerts when Your Reputation Profile is Viewed - ',
-  description: 'With more than 300 million searches every day - colleagues, friends, love interests & clients - someone is going to be looking for you.',
-},
+const planDescriptions = [
+  {
+    heading: "NEW – Lock Sections of Your Reputation Profile - ",
+    description: "The same way you can lock your credit report.",
+  },
+  {
+    heading:
+      "Correct, Enhance & Monitor Reputation Profile and Reputation Score - ",
+    description:
+      "It could affect your career, who'll date you, where you live, & more.",
+  },
+  {
+    heading: "Manage & Protect your Personal Information - ",
+    description:
+      "See websites that sell your personal information that you can't control. We can help you remove records from these sites with just one click",
+  },
+  {
+    heading: "Receive Alerts when Your Reputation Profile is Viewed - ",
+    description:
+      "With more than 300 million searches every day - colleagues, friends, love interests & clients - someone is going to be looking for you.",
+  },
 ];
 
 const radioOptions = [
   {
-    value: '13.95',
-    rate: '$13.95/mo.',
-    label: '12 Months',
-    sublabel: 'BEST VALUE SAVE 18%',
-    sublabelclass: 'bestValue',
+    value: "13.95",
+    rate: "$13.95/mo.",
+    label: "12 Months",
+    sublabel: "BEST VALUE SAVE 18%",
+    sublabelclass: "bestValue",
   },
   {
-    value: '14.95',
-    rate: '$14.95/mo.',
-    label: '6 Months',
-    sublabel: '',
-    sublabelclass: '',
+    value: "14.95",
+    rate: "$14.95/mo.",
+    label: "6 Months",
+    sublabel: "",
+    sublabelclass: "",
   },
   {
-    value: '16.95',
-    rate: '$16.95/mo.',
-    label: '3 Months',
-    sublabel: '',
-    sublabelclass: '',
+    value: "16.95",
+    rate: "$16.95/mo.",
+    label: "3 Months",
+    sublabel: "",
+    sublabelclass: "",
   },
   {
-    value: '1.00',
-    rate: '$1.00',
-    label: '3 Day Trial',
-    sublabel: '(Limited Time Offer)',
-    sublabelclass: 'limitedTime',
+    value: "1.00",
+    rate: "$1.00",
+    label: "3 Day Trial",
+    sublabel: "(Limited Time Offer)",
+    sublabelclass: "limitedTime",
   },
 ];
 
 const securityLogo = {
-  src: 'https://www.mylife.com/site/static/media/seclogo.962b5fe5.png',
-  altText: 'Trust Logos',
+  src: "https://www.mylife.com/site/static/media/seclogo.962b5fe5.png",
+  altText: "Trust Logos",
 };
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     flexGrow: 1,
     padding: theme.spacing(4),
   },
@@ -86,84 +91,83 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   formControl: {
-    display: 'flex',
-    flexDirection: 'row',
-    '& > h4': {
-      color: '#0d8e93',
+    display: "flex",
+    flexDirection: "row",
+    "& > h4": {
+      color: "#0d8e93",
       fontSize: 27,
       fontWeight: 300,
       marginTop: 11,
-      textAlign: 'left',
+      textAlign: "left",
     },
   },
   radioPaper: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: "#f2f2f2",
     padding: theme.spacing(2),
     margin: theme.spacing(1),
   },
   radioBox: {
-    listStyle: 'none',
-    display: 'flex',
-    justifyContent: 'space-between',
+    listStyle: "none",
+    display: "flex",
+    justifyContent: "space-between",
   },
   rateText: {
     marginTop: 10,
   },
   bestValue: {
-    color: '#33a242',
+    color: "#33a242",
     fontSize: 15,
     fontWeight: 500,
     paddingLeft: 32,
-    position: 'relative',
+    position: "relative",
     top: 5,
-    textAlign: 'left',
+    textAlign: "left",
   },
   limitedTime: {
     fontSize: 13,
     paddingLeft: 28,
-    position: 'relative',
+    position: "relative",
     top: -5,
-    textAlign: 'left',
+    textAlign: "left",
   },
   checkIcon: {
-    color: 'green',
+    color: "green",
     marginRight: 10,
-    position: 'relative',
+    position: "relative",
     top: 5,
   },
   planDescriptions: {
-    '& > p': {
+    "& > p": {
       fontSize: 16,
       fontWeight: 400,
-      color: '#666',
+      color: "#666",
       marginLeft: 36,
     },
-    '& > p:first-child': {
+    "& > p:first-child": {
       marginLeft: 0,
       fontWeight: 700,
     },
   },
   paymentSection: {
-    alignItems: 'flex-start',
-    display: 'flex',
-    flexDirection: 'column',
-    '& > .input-group ': {
-      width: '100%',
-      textAlign: 'start',
-
+    alignItems: "flex-start",
+    display: "flex",
+    flexDirection: "column",
+    "& > .input-group ": {
+      width: "100%",
+      textAlign: "start",
     },
-    '& > h4': {
-      justifyContent: 'flex-start',
-      color: '#0d8e93',
+    "& > h4": {
+      justifyContent: "flex-start",
+      color: "#0d8e93",
       fontSize: 27,
       fontWeight: 300,
       marginTop: 11,
-      textAlign: 'start',
-      width: '100%',
+      textAlign: "start",
+      width: "100%",
     },
   },
-  '#expDate': {
-    width: '50%',
+  "#expDate": {
+    width: "50%",
   },
 }));
 
@@ -173,21 +177,15 @@ const MyLifeSubText = (props) => {
   const classes = useStyles();
 
   switch (status) {
-    case 'bestValue':
+    case "bestValue":
       return (
-        <Typography
-          variant="body1"
-          className={classes.bestValue}
-        >
+        <Typography variant="body1" className={classes.bestValue}>
           {subtext}
         </Typography>
       );
-    case 'limitedTime':
+    case "limitedTime":
       return (
-        <Typography
-          variant="body1"
-          className={classes.limitedTime}
-        >
+        <Typography variant="body1" className={classes.limitedTime}>
           {subtext}
         </Typography>
       );
@@ -211,7 +209,7 @@ const MyLifePlanForm = (props) => {
     isSubmitting,
   } = props;
 
-  const [value, setValue] = React.useState('female');
+  const [value, setValue] = React.useState("female");
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -226,7 +224,12 @@ const MyLifePlanForm = (props) => {
               <Typography variant="h4" color="inherit">
                 1. Select Your Plan
               </Typography>
-              <RadioGroup aria-label="priceRates" name="priceRates" value={value} onChange={handleRadioChange}>
+              <RadioGroup
+                aria-label="priceRates"
+                name="priceRates"
+                value={value}
+                onChange={handleRadioChange}
+              >
                 {radioOptions.map((radioOption) => {
                   const keyGen = uuidv4();
 
@@ -238,7 +241,11 @@ const MyLifePlanForm = (props) => {
                           control={<Radio />}
                           label={radioOption.label}
                         />
-                        <Typography variant="body1" color="inherit" className={classes.rateText}>
+                        <Typography
+                          variant="body1"
+                          color="inherit"
+                          className={classes.rateText}
+                        >
                           {radioOption.rate}
                         </Typography>
                       </Box>
@@ -255,12 +262,20 @@ const MyLifePlanForm = (props) => {
               const keyGen = uuidv4();
 
               return (
-                <Grid key={keyGen} item xs={12} margin={2} className={classes.planDescriptions}>
+                <Grid
+                  key={keyGen}
+                  item
+                  xs={12}
+                  margin={2}
+                  className={classes.planDescriptions}
+                >
                   <Typography variant="body1" align="left">
                     <CheckIcon className={classes.checkIcon} />
                     {desc.heading}
                   </Typography>
-                  <Typography variant="body2" color="inherit" align="left">{desc.description}</Typography>
+                  <Typography variant="body2" color="inherit" align="left">
+                    {desc.description}
+                  </Typography>
                 </Grid>
               );
             })}
@@ -316,19 +331,36 @@ const MyLifePlanForm = (props) => {
           <img alt={securityLogo.altText} src={securityLogo.src} />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="body2" color="inherit" align="left" style={{ fontSize: 14, color: '#333', marginTop: 20 }}>
+          <Typography
+            variant="body2"
+            color="inherit"
+            align="left"
+            style={{ fontSize: 14, color: "#333", marginTop: 20 }}
+          >
             By clicking the button above, I agree to the&nbsp;
-            <Link style={{ color: '#1890ff' }} href="http://www.mylife.com/user-agreement/">MyLife Terms & Conditions</Link>
+            <Link
+              style={{ color: "#1890ff" }}
+              href="http://www.mylife.com/user-agreement/"
+            >
+              MyLife Terms & Conditions
+            </Link>
             &nbsp;and&nbsp;
-            <Link style={{ color: '#1890ff' }} href="http://www.mylife.com/privacy-policy/">Privacy Policy</Link>
-            . I understand that MyLife is not a consumer reporting agency. I agree that I will not
-            use MyLife to determine an individual&apos;s eligibility for credit, insurance,
-            employment, housing, or any other purpose covered under the Fair Credit Reporting Act
-            (FCRA). I understand that I will be billed $1.00 for a 3-day trial. If I decide not to
-            cancel during the trial period, I will be billed $79.95 every 6 months to the credit
-            card provided until this subscription is cancelled. I may cancel anytime by contacting
-            Customer Care at (888) 704-1900. (Customer Care hours are Mon-Fri 6am-7pm PT, Sat-Sun
-            6am-5pm PT, Excluding Select Holidays).
+            <Link
+              style={{ color: "#1890ff" }}
+              href="http://www.mylife.com/privacy-policy/"
+            >
+              Privacy Policy
+            </Link>
+            . I understand that MyLife is not a consumer reporting agency. I
+            agree that I will not use MyLife to determine an individual&apos;s
+            eligibility for credit, insurance, employment, housing, or any other
+            purpose covered under the Fair Credit Reporting Act (FCRA). I
+            understand that I will be billed $1.00 for a 3-day trial. If I
+            decide not to cancel during the trial period, I will be billed
+            $79.95 every 6 months to the credit card provided until this
+            subscription is cancelled. I may cancel anytime by contacting
+            Customer Care at (888) 704-1900. (Customer Care hours are Mon-Fri
+            6am-7pm PT, Sat-Sun 6am-5pm PT, Excluding Select Holidays).
           </Typography>
         </Grid>
       </Grid>

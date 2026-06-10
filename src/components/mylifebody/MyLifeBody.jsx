@@ -1,63 +1,65 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // import material components
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 // import material styles
-import { makeStyles } from '@material-ui/core/styles';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
+import { makeStyles } from "@mui/material/styles";
 
 // import components
-import MyLifePlan from '../mylifeplan/MyLifePlan';
+import MyLifePlan from "../mylifeplan/MyLifePlan";
 
 // TODO: This message along with others should be localized (i18n)
-const profileStats = [{
-  item: 'Improve Your Public Reputation Score',
-},
-{
-  item: 'Be Alerted when People Search for You',
-},
-{
-  item: 'Remove Your Info from Negative Sites',
-}];
+const profileStats = [
+  {
+    item: "Improve Your Public Reputation Score",
+  },
+  {
+    item: "Be Alerted when People Search for You",
+  },
+  {
+    item: "Remove Your Info from Negative Sites",
+  },
+];
 
-const myLifeUser = { email: '', firstName: '', lastName: '' };
+const myLifeUser = { email: "", firstName: "", lastName: "" };
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundImage: `url(${'https://www.mylife.com/site/static/media/background.69f6ed69.png'})`,
-    backgroundSize: '100% 410px',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage: `url(${"https://www.mylife.com/site/static/media/background.69f6ed69.png"})`,
+    backgroundSize: "100% 410px",
+    backgroundRepeat: "no-repeat",
     color: theme.palette.text.primary,
   },
   paper: {
-    backgroundColor: '#bfbfbf',
+    backgroundColor: "#bfbfbf",
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   },
   topBodyMsg: {
-    color: '#fff',
-    '& div svg': {
+    color: "#fff",
+    "& div svg": {
       fontSize: 6,
       marginRight: 12,
     },
   },
   appBarMsg: {
-    backgroundColor: '#c70227',
-    color: '#fff',
+    backgroundColor: "#c70227",
+    color: "#fff",
   },
   warningIcon: {
-    position: 'relative',
+    position: "relative",
     fontSize: 60,
     marginRight: 10,
   },
@@ -88,22 +90,14 @@ export default function FullWidthGrid() {
         </Box>
         <Box flexBasis="50%" flexWrap="nowrap">
           <Typography variant="h4" color="inherit">
-            Tarun, Items On Your Reputation Profile Are Affecting Your Reputation
+            Tarun, Items On Your Reputation Profile Are Affecting Your
+            Reputation
           </Typography>
         </Box>
       </Box>
-      <Grid
-        container
-        justify="center"
-        spacing={3}
-      >
+      <Grid container justify="center" spacing={3}>
         <Grid item xs={12} className={classes.topBodyMsg}>
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-          >
+          <Grid container spacing={0} direction="column" alignItems="center">
             <Typography variant="h4" style={{ marginTop: 20 }}>
               See Your Reputation Profile +
             </Typography>

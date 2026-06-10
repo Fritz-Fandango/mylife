@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // import Material components
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 const Copyright = ({ boilerPlates }) => {
   const { boilerPlateAft, boilerPlateFore } = boilerPlates;
@@ -11,7 +10,9 @@ const Copyright = ({ boilerPlates }) => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {boilerPlateFore}
-      <Link color="inherit" href="https://www.mylife.com/">MyLife.com</Link>
+      <Link color="inherit" href="https://www.mylife.com/">
+        MyLife.com
+      </Link>
       {boilerPlateAft}
     </Typography>
   );

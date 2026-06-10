@@ -1,26 +1,31 @@
-import React from 'react';
-import classnames from 'classnames';
+import classnames from "classnames";
 
-import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
+import { Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
-const InputFeedback = ({ error }) => (error ? <div className="input-feedback">{error}</div> : null);
+const InputFeedback = ({ error }) =>
+  error ? <div className="input-feedback">{error}</div> : null;
 
-const MyLifeLabel = ({
-  error, className, children, ...props
-}) => (
-  <Typography style={{fontSize: 14, color: '#333', marginTop: 20}}>
+const MyLifeLabel = ({ error, className, children, ...props }) => (
+  <Typography style={{ fontSize: 14, color: "#333", marginTop: 20 }}>
     {children}
   </Typography>
 );
 
 const MyLifeTextInput = ({
-  type, id, label, error, value, onChange, className, ...props
+  type,
+  id,
+  label,
+  error,
+  value,
+  onChange,
+  className,
+  ...props
 }) => {
   const classes = classnames(
-    'input-group',
+    "input-group",
     {
-      'animated shake error': !!error,
+      "animated shake error": !!error,
     },
     className,
   );

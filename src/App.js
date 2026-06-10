@@ -1,12 +1,10 @@
-import React from 'react';
-
 // Import styles
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from "@mui/material/CssBaseline";
 
 // Import MyLife components
-import MyLifeHeader from './components/mylifeheader/MyLifeHeader';
-import MyLifeBody from './components/mylifebody/MyLifeBody';
-import MyLifeFooter from './components/mylifefooter/MyLifeFooter';
+import MyLifeBody from "./components/mylifebody/MyLifeBody";
+import MyLifeFooter from "./components/mylifefooter/MyLifeFooter";
+import MyLifeHeader from "./components/mylifeheader/MyLifeHeader";
 
 function App() {
   return (

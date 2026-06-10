@@ -1,27 +1,33 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
-    }
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "quotes": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": "off",
+    "no-confusing-arrow": "off",
+    "implicit-arrow-linebreak": "off",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "function-paren-newline": "off",
+    "react/prop-types": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "object-curly-newline": "off",
+    "react/jsx-props-no-spreading": "off"
+  }
 }
