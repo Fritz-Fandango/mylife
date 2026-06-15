@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 const InputFeedback = ({ error }) =>
   error ? <div className="input-feedback">{error}</div> : null;
 
-const MyLifeLabel = ({ error, className, children, ...props }) => (
+const MyLifeLabel = ({ children }) => (
   <Typography style={{ fontSize: 14, color: "#333", marginTop: 20 }}>
     {children}
   </Typography>

@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
 export default function FullWidthGrid() {
   const classes = useStyles();
 
+  // eslint-disable-next-line no-unused-vars
   const [dense, setDense] = useState(false);
 
   return (
