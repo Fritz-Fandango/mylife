@@ -44,9 +44,7 @@ module.exports = [
       "import-x/no-duplicates": "error",
       "import-x/no-self-import": "error",
       "import-x/no-useless-path-segments": "warn",
-      // uuid@14 ships an exports map the resolver can't follow; the bundler
-      // handles real module resolution, not eslint.
-      "import-x/no-unresolved": ["error", { ignore: ["^uuid$"] }],
+      "import-x/no-unresolved": "error",
 
       "no-unused-vars": [
         "warn",

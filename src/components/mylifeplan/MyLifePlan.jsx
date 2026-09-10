@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import CheckIcon from "@mui/icons-material/Check";
 import FormControl from "@mui/material/FormControl";
@@ -10,7 +9,6 @@ import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import { makeStyles } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 // import components
@@ -77,115 +75,110 @@ const securityLogo = {
   altText: "Trust Logos",
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "#fff",
-    flexGrow: 1,
-    padding: theme.spacing(4),
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-  formControl: {
-    display: "flex",
-    flexDirection: "row",
-    "& > h4": {
-      color: "#0d8e93",
-      fontSize: 27,
-      fontWeight: 300,
-      marginTop: 11,
-      textAlign: "left",
-    },
-  },
-  radioPaper: {
-    backgroundColor: "#f2f2f2",
-    padding: theme.spacing(2),
-    margin: theme.spacing(1),
-  },
-  radioBox: {
-    listStyle: "none",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  rateText: {
-    marginTop: 10,
-  },
-  bestValue: {
-    color: "#33a242",
-    fontSize: 15,
-    fontWeight: 500,
-    paddingLeft: 32,
-    position: "relative",
-    top: 5,
+const rootSx = {
+  backgroundColor: "#fff",
+  flexGrow: 1,
+  padding: 4,
+};
+
+const formControlSx = {
+  display: "flex",
+  flexDirection: "row",
+  "& > h4": {
+    color: "#0d8e93",
+    fontSize: 27,
+    fontWeight: 300,
+    marginTop: "11px",
     textAlign: "left",
   },
-  limitedTime: {
-    fontSize: 13,
-    paddingLeft: 28,
-    position: "relative",
-    top: -5,
-    textAlign: "left",
+};
+
+const radioPaperSx = {
+  backgroundColor: "#f2f2f2",
+  padding: 2,
+  margin: 1,
+};
+
+const radioBoxSx = {
+  listStyle: "none",
+  display: "flex",
+  justifyContent: "space-between",
+};
+
+const rateTextSx = {
+  marginTop: "10px",
+};
+
+const bestValueSx = {
+  color: "#33a242",
+  fontSize: 15,
+  fontWeight: 500,
+  paddingLeft: "32px",
+  position: "relative",
+  top: "5px",
+  textAlign: "left",
+};
+
+const limitedTimeSx = {
+  fontSize: 13,
+  paddingLeft: "28px",
+  position: "relative",
+  top: "-5px",
+  textAlign: "left",
+};
+
+const checkIconSx = {
+  color: "green",
+  marginRight: "10px",
+  position: "relative",
+  top: "5px",
+};
+
+const planDescriptionsSx = {
+  "& > p": {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#666",
+    marginLeft: "36px",
   },
-  checkIcon: {
-    color: "green",
-    marginRight: 10,
-    position: "relative",
-    top: 5,
+  "& > p:first-of-type": {
+    marginLeft: 0,
+    fontWeight: 700,
   },
-  planDescriptions: {
-    "& > p": {
-      fontSize: 16,
-      fontWeight: 400,
-      color: "#666",
-      marginLeft: 36,
-    },
-    "& > p:first-child": {
-      marginLeft: 0,
-      fontWeight: 700,
-    },
+};
+
+const paymentSectionSx = {
+  alignItems: "flex-start",
+  display: "flex",
+  flexDirection: "column",
+  "& > .input-group": {
+    width: "100%",
+    textAlign: "start",
   },
-  paymentSection: {
-    alignItems: "flex-start",
-    display: "flex",
-    flexDirection: "column",
-    "& > .input-group ": {
-      width: "100%",
-      textAlign: "start",
-    },
-    "& > h4": {
-      justifyContent: "flex-start",
-      color: "#0d8e93",
-      fontSize: 27,
-      fontWeight: 300,
-      marginTop: 11,
-      textAlign: "start",
-      width: "100%",
-    },
+  "& > h4": {
+    justifyContent: "flex-start",
+    color: "#0d8e93",
+    fontSize: 27,
+    fontWeight: 300,
+    marginTop: "11px",
+    textAlign: "start",
+    width: "100%",
   },
-  "#expDate": {
-    width: "50%",
-  },
-}));
+};
 
 const MyLifeSubText = (props) => {
   const { status, subtext } = props;
 
-  const classes = useStyles();
-
   switch (status) {
     case "bestValue":
       return (
-        <Typography variant="body1" className={classes.bestValue}>
+        <Typography variant="body1" sx={bestValueSx}>
           {subtext}
         </Typography>
       );
     case "limitedTime":
       return (
-        <Typography variant="body1" className={classes.limitedTime}>
+        <Typography variant="body1" sx={limitedTimeSx}>
           {subtext}
         </Typography>
       );
@@ -195,8 +188,6 @@ const MyLifeSubText = (props) => {
 };
 
 const MyLifePlanForm = (props) => {
-  const classes = useStyles();
-
   const {
     values,
     touched,
@@ -216,155 +207,139 @@ const MyLifePlanForm = (props) => {
   };
 
   return (
-    <>
-      <Grid container className={classes.root}>
-        <Grid item xs={12} margin={2}>
-          <form onSubmit={handleSubmit}>
-            <FormControl component="fieldset" className={classes.formControl}>
-              <Typography variant="h4" color="inherit">
-                1. Select Your Plan
+    <Grid container sx={rootSx}>
+      <Grid size={{ xs: 12 }} sx={{ m: 2 }}>
+        <form onSubmit={handleSubmit}>
+          <FormControl component="fieldset" sx={formControlSx}>
+            <Typography variant="h4" color="inherit">
+              1. Select Your Plan
+            </Typography>
+            <RadioGroup
+              aria-label="priceRates"
+              name="priceRates"
+              value={value}
+              onChange={handleRadioChange}
+            >
+              {radioOptions.map((radioOption) => (
+                <Paper key={radioOption.value} sx={radioPaperSx}>
+                  <Box sx={radioBoxSx}>
+                    <FormControlLabel
+                      value={radioOption.value}
+                      control={<Radio />}
+                      label={radioOption.label}
+                    />
+                    <Typography variant="body1" color="inherit" sx={rateTextSx}>
+                      {radioOption.rate}
+                    </Typography>
+                  </Box>
+                  <MyLifeSubText
+                    status={radioOption.sublabelclass}
+                    subtext={radioOption.sublabel}
+                  />
+                </Paper>
+              ))}
+            </RadioGroup>
+          </FormControl>
+          {planDescriptions.map((desc) => (
+            <Grid
+              key={desc.heading}
+              size={{ xs: 12 }}
+              sx={{ m: 2, ...planDescriptionsSx }}
+            >
+              <Typography variant="body1" align="left">
+                <CheckIcon sx={checkIconSx} />
+                {desc.heading}
               </Typography>
-              <RadioGroup
-                aria-label="priceRates"
-                name="priceRates"
-                value={value}
-                onChange={handleRadioChange}
-              >
-                {radioOptions.map((radioOption) => {
-                  const keyGen = uuidv4();
-
-                  return (
-                    <Paper key={keyGen} className={classes.radioPaper}>
-                      <Box className={classes.radioBox}>
-                        <FormControlLabel
-                          value={radioOption.value}
-                          control={<Radio />}
-                          label={radioOption.label}
-                        />
-                        <Typography
-                          variant="body1"
-                          color="inherit"
-                          className={classes.rateText}
-                        >
-                          {radioOption.rate}
-                        </Typography>
-                      </Box>
-                      <MyLifeSubText
-                        status={radioOption.sublabelclass}
-                        subtext={radioOption.sublabel}
-                      />
-                    </Paper>
-                  );
-                })}
-              </RadioGroup>
-            </FormControl>
-            {planDescriptions.map((desc) => {
-              const keyGen = uuidv4();
-
-              return (
-                <Grid
-                  key={keyGen}
-                  item
-                  xs={12}
-                  margin={2}
-                  className={classes.planDescriptions}
-                >
-                  <Typography variant="body1" align="left">
-                    <CheckIcon className={classes.checkIcon} />
-                    {desc.heading}
-                  </Typography>
-                  <Typography variant="body2" color="inherit" align="left">
-                    {desc.description}
-                  </Typography>
-                </Grid>
-              );
-            })}
-            <Grid item xs={12} margin={2} className={classes.paymentSection}>
-              <Typography variant="h4" color="inherit">
-                2. Payment Information
+              <Typography variant="body2" color="inherit" align="left">
+                {desc.description}
               </Typography>
-              <MyLifeTextInput
-                id="CCNumber"
-                type="text"
-                label="Credit Card No."
-                placeholder=""
-                error={touched.CCNumber && errors.CCNumber}
-                value={values.CCNumber}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <MyLifeTextInput
-                id="expDate"
-                type="text"
-                label="Exp Date"
-                placeholder="MM/YY"
-                error={touched.expDate && errors.expDate}
-                value={values.expDate}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <MyLifeTextInput
-                id="CVC"
-                type="email"
-                label="CVC"
-                placeholder=""
-                error={touched.CVC && errors.CVC}
-                value={values.CVC}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <button
-                type="button"
-                className="outline"
-                onClick={handleReset}
-                disabled={!dirty || isSubmitting}
-              >
-                Reset
-              </button>
-              <button type="submit" disabled={isSubmitting}>
-                Submit
-              </button>
             </Grid>
-          </form>
-        </Grid>
-        <Grid item xs={12}>
-          <img alt={securityLogo.altText} src={securityLogo.src} />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography
-            variant="body2"
-            color="inherit"
-            align="left"
-            style={{ fontSize: 14, color: "#333", marginTop: 20 }}
-          >
-            By clicking the button above, I agree to the&nbsp;
-            <Link
-              style={{ color: "#1890ff" }}
-              href="http://www.mylife.com/user-agreement/"
+          ))}
+          <Grid size={{ xs: 12 }} sx={{ m: 2, ...paymentSectionSx }}>
+            <Typography variant="h4" color="inherit">
+              2. Payment Information
+            </Typography>
+            <MyLifeTextInput
+              id="CCNumber"
+              type="text"
+              label="Credit Card No."
+              placeholder=""
+              error={touched.CCNumber && errors.CCNumber}
+              value={values.CCNumber}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <MyLifeTextInput
+              id="expDate"
+              type="text"
+              label="Exp Date"
+              placeholder="MM/YY"
+              error={touched.expDate && errors.expDate}
+              value={values.expDate}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <MyLifeTextInput
+              id="CVC"
+              type="text"
+              label="CVC"
+              placeholder=""
+              error={touched.CVC && errors.CVC}
+              value={values.CVC}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <button
+              type="button"
+              className="outline"
+              onClick={handleReset}
+              disabled={!dirty || isSubmitting}
             >
-              MyLife Terms & Conditions
-            </Link>
-            &nbsp;and&nbsp;
-            <Link
-              style={{ color: "#1890ff" }}
-              href="http://www.mylife.com/privacy-policy/"
-            >
-              Privacy Policy
-            </Link>
-            . I understand that MyLife is not a consumer reporting agency. I
-            agree that I will not use MyLife to determine an individual&apos;s
-            eligibility for credit, insurance, employment, housing, or any other
-            purpose covered under the Fair Credit Reporting Act (FCRA). I
-            understand that I will be billed $1.00 for a 3-day trial. If I
-            decide not to cancel during the trial period, I will be billed
-            $79.95 every 6 months to the credit card provided until this
-            subscription is cancelled. I may cancel anytime by contacting
-            Customer Care at (888) 704-1900. (Customer Care hours are Mon-Fri
-            6am-7pm PT, Sat-Sun 6am-5pm PT, Excluding Select Holidays).
-          </Typography>
-        </Grid>
+              Reset
+            </button>
+            <button type="submit" disabled={isSubmitting}>
+              Submit
+            </button>
+          </Grid>
+        </form>
       </Grid>
-    </>
+      <Grid size={{ xs: 12 }}>
+        <img alt={securityLogo.altText} src={securityLogo.src} />
+      </Grid>
+      <Grid size={{ xs: 12 }}>
+        <Typography
+          variant="body2"
+          color="inherit"
+          align="left"
+          style={{ fontSize: 14, color: "#333", marginTop: 20 }}
+        >
+          By clicking the button above, I agree to the&nbsp;
+          <Link
+            style={{ color: "#1890ff" }}
+            href="http://www.mylife.com/user-agreement/"
+          >
+            MyLife Terms & Conditions
+          </Link>
+          &nbsp;and&nbsp;
+          <Link
+            style={{ color: "#1890ff" }}
+            href="http://www.mylife.com/privacy-policy/"
+          >
+            Privacy Policy
+          </Link>
+          . I understand that MyLife is not a consumer reporting agency. I agree
+          that I will not use MyLife to determine an individual&apos;s
+          eligibility for credit, insurance, employment, housing, or any other
+          purpose covered under the Fair Credit Reporting Act (FCRA). I
+          understand that I will be billed $1.00 for a 3-day trial. If I decide
+          not to cancel during the trial period, I will be billed $79.95 every 6
+          months to the credit card provided until this subscription is
+          cancelled. I may cancel anytime by contacting Customer Care at (888)
+          704-1900. (Customer Care hours are Mon-Fri 6am-7pm PT, Sat-Sun 6am-5pm
+          PT, Excluding Select Holidays).
+        </Typography>
+      </Grid>
+    </Grid>
   );
 };
 

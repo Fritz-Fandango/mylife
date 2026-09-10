@@ -1,13 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
-
 // import material components
 import AppBar from "@mui/material/AppBar";
 import Link from "@mui/material/Link";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-
-// import material styles
-import { makeStyles } from "@mui/material/styles";
 
 const logos = [
   {
@@ -20,43 +15,25 @@ const logos = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: "#fff",
-  },
-  logo: {
-    flexGrow: 1,
-  },
-}));
-
-const MyLifeHeader = () => {
-  const classes = useStyles();
-
-  return (
-    <AppBar position="static">
-      <Toolbar className={classes.root}>
-        {logos.map((logo) => {
-          const keyGen = uuidv4();
-
-          return (
-            <div key={keyGen} className={classes.logo}>
-              <img alt={logo.altText} src={logo.src} />
-            </div>
-          );
-        })}
-        {/* TODO: Text and URL should come from system */}
-        <Typography variant="body2" color="textSecondary" align="center">
-          <Link
-            color="inherit"
-            href="https://www.mylife.com/site/user-profile.view/"
-          >
-            Go Back To Free Profile
-          </Link>
-        </Typography>
-      </Toolbar>
-    </AppBar>
-  );
-};
+const MyLifeHeader = () => (
+  <AppBar position="static">
+    <Toolbar sx={{ flexGrow: 1, backgroundColor: "#fff" }}>
+      {logos.map((logo) => (
+        <div key={logo.altText} style={{ flexGrow: 1 }}>
+          <img alt={logo.altText} src={logo.src} />
+        </div>
+      ))}
+      {/* TODO: Text and URL should come from system */}
+      <Typography variant="body2" color="textSecondary" align="center">
+        <Link
+          color="inherit"
+          href="https://www.mylife.com/site/user-profile.view/"
+        >
+          Go Back To Free Profile
+        </Link>
+      </Typography>
+    </Toolbar>
+  </AppBar>
+);
 
 export default MyLifeHeader;
