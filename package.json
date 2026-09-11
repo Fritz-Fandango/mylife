@@ -17,7 +17,6 @@
     "react-dom": "^19.2.8",
     "react-scripts": "5.0.1",
     "underscore": "^1.13.7",
-    "uuid": "^14.0.2",
     "yup": "^1.2.0"
   },
   "scripts": {
@@ -26,9 +25,6 @@
     "test": "react-scripts test",
     "lint": "eslint src",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -43,11 +39,11 @@
     ]
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "eslint": "^10.9.1",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^7.1.1"
+    "eslint-import-resolver-node": "^0.4.0",
+    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^15.15.0"
   }
 }

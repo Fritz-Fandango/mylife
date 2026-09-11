@@ -15,6 +15,9 @@ const MyLifeFormEnhancer = withFormik({
   }),
 
   mapPropsToValues: ({ user }) => ({
+    CCNumber: "",
+    expDate: "",
+    CVC: "",
     ...user,
   }),
   handleSubmit: (payload, { setSubmitting }) => {

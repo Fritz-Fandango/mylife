@@ -5,9 +5,6 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-// import material styles
-import { makeStyles } from "@mui/material/styles";
-
 // import components
 import Copyright from "./Copyright";
 
@@ -43,52 +40,38 @@ const boilerPlates = {
   boilerPlateAft: "® Inc U.S. Patent No. 6,701,348 and 6,694,35",
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: theme.spacing(6, 0, 3),
-  },
-  lightBulb: {
-    verticalAlign: "middle",
-    marginRight: theme.spacing(1),
-  },
-  boxStyle: {
-    marginBottom: 5.6,
-  },
-}));
-
-const MyLifeFooter = () => {
-  const classes = useStyles();
-
-  return (
-    <Container maxWidth="md" component="footer" className={classes.footer}>
-      <Grid container justify="center" alignItems="flex-start" spacing={4}>
-        <Box mt={5} className={classes.boxStyle}>
-          <Copyright boilerPlates={boilerPlates} />
-        </Box>
-        {footers.map((footer) =>
-          Object.prototype.hasOwnProperty.call(footer, "url") ? (
-            <Grid item key={footer.title}>
-              <Link color="inherit" href={footer.url}>
-                {footer.description}
-              </Link>
-            </Grid>
-          ) : (
-            <Grid item xs={12} key={footer.title}>
-              <Typography
-                align="center"
-                key={footer.title}
-                variant="body1"
-                color="textSecondary"
-                gutterBottom
-              >
-                {footer.description}
-              </Typography>
-            </Grid>
-          ),
-        )}
-      </Grid>
-    </Container>
-  );
-};
+const MyLifeFooter = () => (
+  <Container maxWidth="md" component="footer" sx={{ mt: 6, mb: 3 }}>
+    <Grid
+      container
+      spacing={4}
+      sx={{ justifyContent: "center", alignItems: "flex-start" }}
+    >
+      <Box sx={{ mt: 5, mb: "5.6px" }}>
+        <Copyright boilerPlates={boilerPlates} />
+      </Box>
+      {footers.map((footer) =>
+        Object.prototype.hasOwnProperty.call(footer, "url") ? (
+          <Grid key={footer.title}>
+            <Link color="inherit" href={footer.url}>
+              {footer.description}
+            </Link>
+          </Grid>
+        ) : (
+          <Grid key={footer.title} size={{ xs: 12 }}>
+            <Typography
+              align="center"
+              variant="body1"
+              color="textSecondary"
+              gutterBottom
+            >
+              {footer.description}
+            </Typography>
+          </Grid>
+        ),
+      )}
+    </Grid>
+  </Container>
+);
 
 export default MyLifeFooter;
