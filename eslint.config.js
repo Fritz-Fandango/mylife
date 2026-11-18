@@ -56,7 +56,7 @@ module.exports = [
     files: ["src/**/*.test.{js,jsx}", "src/setupTests.js"],
     languageOptions: {
       globals: {
-        ...globals.jest,
+        ...globals.vitest,
       },
     },
   },
