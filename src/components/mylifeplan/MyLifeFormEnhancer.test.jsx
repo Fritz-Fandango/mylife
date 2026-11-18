@@ -130,4 +130,25 @@ describe("MyLifeFormEnhancer", () => {
     );
     expect(screen.queryByText(/expired|valid expiration/i)).toBeNull();
   });
+
+  it("rejects a well-formed card number that fails the Luhn check", async () => {
+    await submitWith({ ...valid, CCNumber: "4111111111111112" });
+    expect(await screen.findByText("Invalid CC number entered. Please recheck.")).toBeInTheDocument();
+  });
+
+  it("rejects a swapped pair of adjacent digits", async () => {
+    await submitWith({ ...valid, CCNumber: "4111111111111181" });
+    expect(await screen.findByText("Invalid CC number entered. Please recheck.")).toBeInTheDocument();
+  });
+
+  it.each(["4111111111111111", "5500005555555559", "378282246310005"])(
+    "accepts the valid test card number %s",
+    async (CCNumber) => {
+      await submitWith({ ...valid, CCNumber });
+      await waitFor(() =>
+        expect(screen.getByTestId("submitting")).toHaveTextContent("false"),
+      );
+      expect(screen.queryByText(/invalid/i)).toBeNull();
+    },
+  );
 });
