@@ -350,9 +350,9 @@ MyLifePlanForm.defaultProps = {
 
 MyLifePlanForm.propTypes = {
   values: PropTypes.shape({
-    CCNumber: PropTypes.number,
+    CCNumber: PropTypes.string,
     expDate: PropTypes.string,
-    CVC: PropTypes.number,
+    CVC: PropTypes.string,
   }).isRequired,
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),

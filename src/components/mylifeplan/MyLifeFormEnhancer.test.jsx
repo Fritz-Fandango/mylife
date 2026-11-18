@@ -57,7 +57,7 @@ describe("MyLifeFormEnhancer", () => {
 
   it("rejects a CC number or CVC below the minimum", async () => {
     const user = userEvent.setup();
-    render(<Enhanced user={{ CCNumber: "5", expDate: "2030-01-01", CVC: "1" }} />);
+    render(<Enhanced user={{ CCNumber: "5", expDate: "12/99", CVC: "1" }} />);
 
     await user.click(screen.getByRole("button", { name: /submit/i }));
 
@@ -68,7 +68,7 @@ describe("MyLifeFormEnhancer", () => {
   it("submits valid values and clears the submitting flag", async () => {
     const user = userEvent.setup();
     render(
-      <Enhanced user={{ CCNumber: "4111111111111111", expDate: "2030-01-01", CVC: "123" }} />,
+      <Enhanced user={{ CCNumber: "4111111111111111", expDate: "12/99", CVC: "123" }} />,
     );
 
     await user.click(screen.getByRole("button", { name: /submit/i }));
@@ -78,5 +78,56 @@ describe("MyLifeFormEnhancer", () => {
     );
     expect(screen.queryByText(/is required/i)).toBeNull();
     expect(screen.queryByText(/invalid/i)).toBeNull();
+  });
+
+  const submitWith = async (values) => {
+    const user = userEvent.setup();
+    render(<Enhanced user={values} />);
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+  };
+  const valid = { CCNumber: "4111111111111111", expDate: "12/99", CVC: "123" };
+
+  it("rejects a card number with letters or the wrong length", async () => {
+    await submitWith({ ...valid, CCNumber: "4111abcd11111111" });
+    expect(await screen.findByText("Invalid CC number entered. Please recheck.")).toBeInTheDocument();
+  });
+
+  it("accepts a card number with spaces or dashes", async () => {
+    await submitWith({ ...valid, CCNumber: "4111 1111-1111 1111" });
+    await waitFor(() =>
+      expect(screen.getByTestId("submitting")).toHaveTextContent("false"),
+    );
+    expect(screen.queryByText(/invalid/i)).toBeNull();
+  });
+
+  it("accepts a 4-digit CVC but rejects letters", async () => {
+    await submitWith({ ...valid, CVC: "12a4" });
+    expect(await screen.findByText("Invalid CVC number entered. Please recheck.")).toBeInTheDocument();
+  });
+
+  it("rejects an expiration date that is not MM/YY", async () => {
+    await submitWith({ ...valid, expDate: "2030-01-01" });
+    expect(await screen.findByText("Valid expiration date is needed")).toBeInTheDocument();
+  });
+
+  it("rejects an invalid month", async () => {
+    await submitWith({ ...valid, expDate: "13/30" });
+    expect(await screen.findByText("Valid expiration date is needed")).toBeInTheDocument();
+  });
+
+  it("rejects an expired card", async () => {
+    await submitWith({ ...valid, expDate: "01/20" });
+    expect(await screen.findByText("Card has expired.")).toBeInTheDocument();
+  });
+
+  it("accepts a card expiring this month", async () => {
+    const now = new Date();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const yy = String(now.getFullYear()).slice(-2);
+    await submitWith({ ...valid, expDate: `${mm}/${yy}` });
+    await waitFor(() =>
+      expect(screen.getByTestId("submitting")).toHaveTextContent("false"),
+    );
+    expect(screen.queryByText(/expired|valid expiration/i)).toBeNull();
   });
 });

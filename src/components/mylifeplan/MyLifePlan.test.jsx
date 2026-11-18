@@ -112,7 +112,7 @@ describe("<MyLifePlan />", () => {
     const user = userEvent.setup();
     render(
       <MyLifePlan
-        user={{ CCNumber: "4111111111111111", expDate: "2030-01-01", CVC: "123" }}
+        user={{ CCNumber: "4111111111111111", expDate: "12/99", CVC: "123" }}
       />,
     );
 
